@@ -13,11 +13,22 @@ namespace test.capeit.barcodes
             enoder = new Code128();
         }
 
-        [Fact(Skip ="I/O")]
+        [Fact]
         public void Should_Draw_Encode_A()
         {
             var result = enoder.EncodeTypeA("Code 128");
-            result.DrawPng(result.Count, 100, @".\result.png");
+            result.DrawPng(result.Count, 100, @".\Should_Draw_Encode_A_result.png");
+        }
+
+        [Fact]
+        public void Should_Draw_Encode_A_To_Stream()
+        {
+            var result = enoder.EncodeTypeA("Code 128");
+            var stream = result.DrawPng(result.Count, 100);
+            
+            Assert.NotNull(stream);
+            Assert.Equal(0, stream.Position);
+            Assert.True(stream.Length > 0);
         }
 
         [Fact]
