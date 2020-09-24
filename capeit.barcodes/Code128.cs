@@ -329,17 +329,6 @@ namespace capeit.barcodes
             return result;
         }
 
-        public Stream PrintTypeA(string data)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PrintTypeA(string data, int widrh, int height, string path)
-        {
-            var encodedData = EncodeTypeA(data);
-            
-        }
-
         private List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
         {
             List<int> result = new List<int>();
