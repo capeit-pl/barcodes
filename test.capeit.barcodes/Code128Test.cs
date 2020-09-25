@@ -7,23 +7,21 @@ namespace test.capeit.barcodes
 {
     public class Code128Test
     {
-        Code128 enoder;
         public Code128Test()
         {
-            enoder = new Code128();
         }
 
         [Fact]
         public void Should_Draw_Encode_A()
         {
-            var result = enoder.EncodeTypeA("Code 128");
+            var result = "Code 128".EncodeTypeA();
             result.DrawPng(result.Count, 100, @".\Should_Draw_Encode_A_result.png");
         }
 
         [Fact]
         public void Should_Draw_Encode_A_To_Stream()
         {
-            var result = enoder.EncodeTypeA("Code 128");
+            var result = "Code 128".EncodeTypeA();
             var stream = result.DrawPng(result.Count, 100);
             
             Assert.NotNull(stream);
@@ -34,7 +32,7 @@ namespace test.capeit.barcodes
         [Fact]
         public void Should_Throw_When_Width_Small_Encode_A()
         {
-            var result = enoder.EncodeTypeA("Code 128");
+            var result = "Code 128".EncodeTypeA();
             Assert.Throws<ArgumentException>(() =>
             {
                 result.DrawPng(10, 100, @".\result.png");
@@ -47,7 +45,7 @@ namespace test.capeit.barcodes
 
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeA("Co");
+            var result = "Co".EncodeTypeA();
 
             Assert.Equal(expected, result);
         }
@@ -57,7 +55,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeA("Code 128");
+            var result = "Code 128".EncodeTypeA();
 
             Assert.Equal(expected, result);
         }
@@ -67,7 +65,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeB("Co");
+            var result = "Co".EncodeTypeB();
 
             Assert.Equal(expected, result);
         }
@@ -77,7 +75,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeB("Code 128");
+            var result = "Code 128".EncodeTypeB();
 
             Assert.Equal(expected, result);
         }
@@ -87,7 +85,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeC("3579");
+            var result = "3579".EncodeTypeC();
 
             Assert.Equal(expected, result);
         }
@@ -97,7 +95,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeC("364285321");
+            var result = "364285321".EncodeTypeC();
 
             Assert.Equal(expected, result);
         }
@@ -107,7 +105,7 @@ namespace test.capeit.barcodes
         {
             List<int> expected = new List<int>() { 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1 };
 
-            var result = enoder.EncodeTypeB("code128@capeit.pl");
+            var result = "code128@capeit.pl".EncodeTypeB();
 
             Assert.Equal(expected, result);
         }

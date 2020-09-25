@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace capeit.barcodes
 {
-    public class Code128 : ICode128
+    public static class Code128
     {
         private const int FUNC1 = 102;
         private const int START_A = 103;
@@ -17,7 +17,7 @@ namespace capeit.barcodes
 
         private const int DENOMINATOR = 103;
 
-        private Dictionary<int, List<int>> valuePattern = new Dictionary<int, List<int>>()
+        private static Dictionary<int, List<int>> valuePattern = new Dictionary<int, List<int>>()
         {
             #region valuePattern
             { 0, new List<int> { 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0 } },
@@ -130,7 +130,7 @@ namespace capeit.barcodes
             #endregion
         };
 
-        private Dictionary<char, int> typeA = new Dictionary<char, int>()
+        private static Dictionary<char, int> typeA = new Dictionary<char, int>()
         {
             { ' ', 0 },
             { '!', 1 },
@@ -198,7 +198,7 @@ namespace capeit.barcodes
             { '_', 63 },
         };
 
-        private Dictionary<char, int> typeB = new Dictionary<char, int>()
+        private static Dictionary<char, int> typeB = new Dictionary<char, int>()
         {
             { ' ', 0 },
             { '!', 1 },
@@ -297,11 +297,11 @@ namespace capeit.barcodes
             { '~', 94 },
         };
 
-        public List<int> EncodeTypeA(string data) => Encode(data.ToUpper(), START_A, typeA);
+        public static List<int> EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
 
-        public List<int> EncodeTypeB(string data) => Encode(data, START_B, typeB);
+        public static List<int> EncodeTypeB(this string data) => Encode(data, START_B, typeB);
 
-        public List<int> EncodeTypeC(string data)
+        public static List<int> EncodeTypeC(this string data)
         {
             if (data.Length % 2 != 0)
                 data = data.PadLeft(data.Length + 1, '0');
@@ -329,7 +329,7 @@ namespace capeit.barcodes
             return result;
         }
 
-        private List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
+        private static List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
         {
             List<int> result = new List<int>();
             result.AddRange(valuePattern[startValue]);
