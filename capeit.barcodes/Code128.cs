@@ -296,12 +296,35 @@ namespace capeit.barcodes
             { '}', 93 },
             { '~', 94 },
         };
+        private static List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
+        {
+            List<int> result = new List<int>();
+            result.AddRange(valuePattern[startValue]);
 
-        public static List<int> EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
+            var sum = startValue;
+            for (int i = 0; i < data.Length; i++)
+            {
+                var c = data[i];
+                var value = charValue[c];
+                sum += (i + 1) * value;
 
-        public static List<int> EncodeTypeB(this string data) => Encode(data, START_B, typeB);
+                result.AddRange(valuePattern[value]);
+            }
 
-        public static List<int> EncodeTypeC(this string data)
+            var checkSum = sum % DENOMINATOR;
+
+            result.AddRange(valuePattern[checkSum]);
+
+            result.AddRange(valuePattern[STOP]);
+
+            return result;
+        }
+
+        public static List<int> Code128EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
+
+        public static List<int> Code128EncodeTypeB(this string data) => Encode(data, START_B, typeB);
+
+        public static List<int> Code128EncodeTypeC(this string data)
         {
             if (data.Length % 2 != 0)
                 data = data.PadLeft(data.Length + 1, '0');
@@ -318,30 +341,6 @@ namespace capeit.barcodes
 
                 result.AddRange(valuePattern[value]);
                 index++;
-            }
-
-            var checkSum = sum % DENOMINATOR;
-
-            result.AddRange(valuePattern[checkSum]);
-
-            result.AddRange(valuePattern[STOP]);
-
-            return result;
-        }
-
-        private static List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
-        {
-            List<int> result = new List<int>();
-            result.AddRange(valuePattern[startValue]);
-
-            var sum = startValue;
-            for (int i = 0;i < data.Length;i++)
-            {
-                var c = data[i];
-                var value = charValue[c];
-                sum += (i + 1) * value;
-
-                result.AddRange(valuePattern[value]);
             }
 
             var checkSum = sum % DENOMINATOR;

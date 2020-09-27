@@ -1,21 +1,21 @@
 # Code 128
 ## Type A
 ```csharp
-var enoder = new Code128();
-var code128 = enoder.EncodeTypeA("Code 128");
+var result = "Code 128".Code128EncodeTypeA();
 var code128Stream = result.DrawPng(code128.Count, 100);
 ```
 
 ## Type B
 ```csharp
-var enoder = new Code128();
-var code128 = enoder.EncodeTypeB("Code 128");
+var result = "Code 128".Code128EncodeTypeB();
 var code128Stream = result.DrawPng(code128.Count, 100);
 ```
 
 ## Type C
 ```csharp
-var enoder = new Code128();
-var code128 = enoder.EncodeTypeC("Code 128");
+var result = "Code 128".Code128EncodeTypeC();
 var code128Stream = result.DrawPng(code128.Count, 100);
 ```
+
+# EAN-13
+var result = "9957346284897".Ean13Encode();
