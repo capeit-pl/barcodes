@@ -296,12 +296,12 @@ namespace capeit.barcodes
             { '}', 93 },
             { '~', 94 },
         };
+        
+        public static List<int> Code128EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
 
-        public static List<int> EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
+        public static List<int> Code128EncodeTypeB(this string data) => Encode(data, START_B, typeB);
 
-        public static List<int> EncodeTypeB(this string data) => Encode(data, START_B, typeB);
-
-        public static List<int> EncodeTypeC(this string data)
+        public static List<int> Code128EncodeTypeC(this string data)
         {
             if (data.Length % 2 != 0)
                 data = data.PadLeft(data.Length + 1, '0');
@@ -335,7 +335,7 @@ namespace capeit.barcodes
             result.AddRange(valuePattern[startValue]);
 
             var sum = startValue;
-            for (int i = 0;i < data.Length;i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 var c = data[i];
                 var value = charValue[c];
@@ -352,5 +352,6 @@ namespace capeit.barcodes
 
             return result;
         }
+
     }
 }
