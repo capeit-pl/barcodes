@@ -296,30 +296,7 @@ namespace capeit.barcodes
             { '}', 93 },
             { '~', 94 },
         };
-        private static List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
-        {
-            List<int> result = new List<int>();
-            result.AddRange(valuePattern[startValue]);
-
-            var sum = startValue;
-            for (int i = 0; i < data.Length; i++)
-            {
-                var c = data[i];
-                var value = charValue[c];
-                sum += (i + 1) * value;
-
-                result.AddRange(valuePattern[value]);
-            }
-
-            var checkSum = sum % DENOMINATOR;
-
-            result.AddRange(valuePattern[checkSum]);
-
-            result.AddRange(valuePattern[STOP]);
-
-            return result;
-        }
-
+        
         public static List<int> Code128EncodeTypeA(this string data) => Encode(data.ToUpper(), START_A, typeA);
 
         public static List<int> Code128EncodeTypeB(this string data) => Encode(data, START_B, typeB);
@@ -351,5 +328,30 @@ namespace capeit.barcodes
 
             return result;
         }
+
+        private static List<int> Encode(string data, int startValue, Dictionary<char, int> charValue)
+        {
+            List<int> result = new List<int>();
+            result.AddRange(valuePattern[startValue]);
+
+            var sum = startValue;
+            for (int i = 0; i < data.Length; i++)
+            {
+                var c = data[i];
+                var value = charValue[c];
+                sum += (i + 1) * value;
+
+                result.AddRange(valuePattern[value]);
+            }
+
+            var checkSum = sum % DENOMINATOR;
+
+            result.AddRange(valuePattern[checkSum]);
+
+            result.AddRange(valuePattern[STOP]);
+
+            return result;
+        }
+
     }
 }
