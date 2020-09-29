@@ -22,7 +22,7 @@ var code128Stream = result.DrawPng(code128.Count, 100);
 
 # EAN-13
 ```csharp
-var result = "9957346284897".Ean13Encode();
+var result = "977243456100".Ean13Encode();
 var stream = result.DrawPng(result.Count, 100);
 ```
 ![ean_13](https://github.com/capeit-pl/barcodes/blob/main/sample/it_should_draw_ean_13.png?raw=true)
