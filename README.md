@@ -22,3 +22,9 @@ var code128Stream = result.DrawPng(code128.Count, 100);
 var result = "9957346284897".Ean13Encode();
 var stream = result.DrawPng(result.Count, 100);
 ```
+
+# ITF 14
+```csharp
+var result = "9876543210921".Itf14Encode();
+var stream = result.DrawPng(result.Count, 100);
+```
