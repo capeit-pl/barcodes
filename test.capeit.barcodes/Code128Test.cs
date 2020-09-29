@@ -13,12 +13,30 @@ namespace test.capeit.barcodes
         }
 
         [Fact]
-        public void Should_Draw_Encode_A()
+        public void it_should_draw_code_128_encode_a()
         {
             var result = "Code 128".Code128EncodeTypeA();
-            result.DrawPng(result.Count, 100, @".\Should_Draw_Encode_A_result.png");
+            result.DrawPng(result.Count, 100, @".\it_should_draw_code_128_encode_a.png");
 
-            Assert.True(File.Exists(@".\Should_Draw_Encode_A_result.png"));
+            Assert.True(File.Exists(@".\it_should_draw_code_128_encode_a.png"));
+        }
+
+        [Fact]
+        public void it_should_draw_code_128_encode_b()
+        {
+            var result = "Code 128".Code128EncodeTypeB();
+            result.DrawPng(result.Count, 100, @".\it_should_draw_code_128_encode_b.png");
+
+            Assert.True(File.Exists(@".\it_should_draw_code_128_encode_b.png"));
+        }
+
+        [Fact]
+        public void it_should_draw_code_128_encode_c()
+        {
+            var result = "128128".Code128EncodeTypeC();
+            result.DrawPng(result.Count, 100, @".\it_should_draw_code_128_encode_c.png");
+
+            Assert.True(File.Exists(@".\it_should_draw_code_128_encode_c.png"));
         }
 
         [Fact]
