@@ -25,6 +25,7 @@ var code128Stream = result.DrawPng(code128.Count, 100);
 var result = "9957346284897".Ean13Encode();
 var stream = result.DrawPng(result.Count, 100);
 ```
+![ean_13](https://github.com/capeit-pl/barcodes/blob/main/sample/it_should_draw_ean_13.png?raw=true)
 
 # ITF 14
 ```csharp
