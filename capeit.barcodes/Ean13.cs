@@ -108,13 +108,13 @@ namespace capeit.barcodes
         private static void AddCheckSum(List<int> dNum)
         {
             var sum = 0;
-            for (int i = 0; i < dNum.Count; i++)
+            for (int i = dNum.Count -1 ; i >= 0; i--)
             {
-                sum += i % 2 == 0 ? 3 * dNum[i] : dNum[i];
+                sum += i % 2 != 0 ? 3 * dNum[i] : dNum[i];
             }
 
-            dNum.Add(10 - sum % 10);
-        }
+            dNum.Add((10 - (sum % 10)) % 10);
+            }
     }
 
 }

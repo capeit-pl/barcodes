@@ -13,7 +13,7 @@ namespace test.capeit.barcodes
         [Fact]
         public void it_should_draw_ean_13()
         {
-            var result = "0123456789012".Ean13Encode();
+            var result = "977243456100".Ean13Encode();
             result.DrawPng(result.Count, 100, @".\it_should_draw_ean_13.png");
 
             Assert.True(File.Exists(@".\it_should_draw_ean_13.png"));
